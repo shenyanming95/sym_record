@@ -1,0 +1,2 @@
+com.sym.spi.service.impl.SimpleKeyGenerator
+com.sym.spi.service.impl.CompositeKeyGenerator
