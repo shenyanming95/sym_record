@@ -5,7 +5,6 @@
 - collection：集合处理
 - encrypt：加解密
 - excel：poi和easyExcel解析excel文档
-- guava：谷歌guava使用
 - http：Http客户端
 - io：java的bio
 - java8：lambda和stream
