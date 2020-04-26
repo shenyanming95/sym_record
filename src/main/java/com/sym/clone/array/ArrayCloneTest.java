@@ -1,4 +1,4 @@
-package com.sym.clone.arrayClone;
+package com.sym.clone.array;
 
 import org.junit.Test;
 
@@ -6,14 +6,16 @@ import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by shenym on 2019/9/3.
+ *
+ * @author shenym
+ * @date 2019/9/3
  */
 public class ArrayCloneTest {
 
 
     @Test
-    public void testOne(){
-        int[] src = new int[]{1,2,3,4,5};
+    public void testOne() {
+        int[] src = new int[]{1, 2, 3, 4, 5};
         int[] dest = new int[src.length];
         print(dest);
         /*
@@ -24,18 +26,18 @@ public class ArrayCloneTest {
          * destPos：指定拷贝到目标数组的起始下标
          * length：要拷贝的数组元素的数量
          */
-        System.arraycopy(src,0,dest,0,src.length);
+        System.arraycopy(src, 0, dest, 0, src.length);
         print(dest);
     }
 
 
-    private void print(int[] array){
+    private void print(int[] array) {
         int len = array.length;
         AtomicInteger idx = new AtomicInteger(0);
         System.out.print("[");
-        Arrays.stream(array).forEach(a->{
+        Arrays.stream(array).forEach(a -> {
             idx.incrementAndGet();
-            System.out.print(a+(idx.intValue()==len?"":","));
+            System.out.print(a + (idx.intValue() == len ? "" : ","));
 
         });
         System.out.println("]");

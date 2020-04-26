@@ -1,4 +1,4 @@
-package com.sym.clone.objectClone;
+package com.sym.clone.object;
 
 import java.io.Serializable;
 
@@ -7,7 +7,7 @@ import java.io.Serializable;
  * 
  * 当其他类有本类的引用时,如果其他类用序列化实现深克隆,本类也要实现Serializable接口
  * 
- * @author Administrator
+ * @author ym.shen
  *
  */
 public class Student implements Cloneable,Serializable{
@@ -15,8 +15,10 @@ public class Student implements Cloneable,Serializable{
 	private int id;
 
 	private boolean tag;
-	
-	/*克隆实现方式,调用Object.clone()并修改方法修饰为public*/
+
+	/**
+	 * 克隆实现方式,调用Object.clone()并修改方法修饰为public
+	 */
 	@Override
 	public Object clone() throws CloneNotSupportedException {
 		return super.clone();

@@ -1,4 +1,4 @@
-package com.sym.clone.objectClone;
+package com.sym.clone.object;
 
 import org.junit.Test;
 
@@ -7,7 +7,7 @@ import org.junit.Test;
  * @author Administrator
  *
  */
-public class CloneTest {
+public class ObjectCloneTest {
 
 
 	@Test
