@@ -14,7 +14,9 @@ import java.util.List;
  * 官方文档：https://alibaba-easyexcel.github.io/
  * 新版本(2.x)API有变化
  * <p>
- * Created by shenym on 2019/10/31.
+ *
+ * @author ym.shen
+ * @date 2019/10/31
  */
 public class EasyExcelV2ExportUtil {
 
@@ -28,9 +30,12 @@ public class EasyExcelV2ExportUtil {
      *                     对应的类型; 当然也可以直接全部使用String来替换, 如List<List<String>>
      */
     public static <T> void exportExcel(OutputStream outputStream, Class<T> headClass, List<T> dataList) {
-        EasyExcel.write(outputStream, headClass).sheet("自定义")// 设置输出流+标题
-                .registerWriteHandler(new LongestMatchColumnWidthStyleStrategy())//注册写处理器, 这个类是easyExcel的自动列宽
-                .doWrite(dataList);//使用doWrite()会自动关闭流
+        // 设置输出流+标题
+        EasyExcel.write(outputStream, headClass).sheet("自定义")
+                //注册写处理器, 这个类是easyExcel的自动列宽
+                .registerWriteHandler(new LongestMatchColumnWidthStyleStrategy())
+                //使用doWrite()会自动关闭流
+                .doWrite(dataList);
     }
 
 
@@ -56,8 +61,9 @@ public class EasyExcelV2ExportUtil {
      */
     public static void importExcel(InputStream inputStream, ReadListener readListener, Class headClass) {
         EasyExcel.read(inputStream, readListener)
-                .sheet(0) //读取哪一个sheet
-                .head(headClass) //设置excel标题
-                .doRead();
+                //读取哪一个sheet
+                .sheet(0)
+                //设置excel标题
+                .head(headClass).doRead();
     }
 }
