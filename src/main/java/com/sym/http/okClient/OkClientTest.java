@@ -9,18 +9,18 @@ import java.io.Reader;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by 沈燕明 on 2019/5/28 16:56.
+ * @author ym.shen
+ * @date 2019/5/28 16:56
  */
-public class OkClientDemo {
+public class OkClientTest {
 
     /**
      * OkHttpClient可以被重复复用
-     * @throws IOException
      */
     @Test
     public void test() throws IOException {
         OkHttpClient okClient = new OkHttpClient();
-        for( int i=0;i<1000;i++ ){
+        for (int i = 0; i < 1000; i++) {
             Request request = new Request.Builder().addHeader("token", "i just test").url("http://127.0.0.1:8080/get/123").get().build();
             Response response = okClient.newCall(request).execute();
             System.out.println(response.code());
@@ -29,19 +29,19 @@ public class OkClientDemo {
 
     /**
      * 执行1000次耗时：
-     *      2019/05/29 --- 3044ms
+     * 2019/05/29 --- 3044ms
      */
     @Test
     public void testOne() throws IOException {
         long start = System.currentTimeMillis();
         OkHttpClient httpClient = new OkHttpClient();
-        for( int i=0;i<1000;i++ ){
+        for (int i = 0; i < 1000; i++) {
             Request request = new Request.Builder().get().url("http://127.0.0.1:8080/get/123321").build();
             Response response = httpClient.newCall(request).execute();
             response.code();
         }
         long end = System.currentTimeMillis();
-        System.out.println((end-start)+"ms");
+        System.out.println((end - start) + "ms");
     }
 
     /**
@@ -50,16 +50,9 @@ public class OkClientDemo {
     @Test
     public void get() throws IOException {
         // 创建客户端
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .callTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10,TimeUnit.SECONDS)
-                .build();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().callTimeout(10, TimeUnit.SECONDS).readTimeout(10, TimeUnit.SECONDS).build();
         // 创建请求体
-        Request request = new Request.Builder()
-                .get()
-                .url("http://127.0.0.1:8080/get/123321")
-                .addHeader("token", "yes i am a token")
-                .tag("Tag").build();
+        Request request = new Request.Builder().get().url("http://127.0.0.1:8080/get/123321").addHeader("token", "yes i am a token").tag("Tag").build();
         // 发起请求
         Response response = okHttpClient.newCall(request).execute();
         // 处理返回结果
@@ -71,23 +64,20 @@ public class OkClientDemo {
 
     /**
      * 使用OkClient发送post请求
+     *
      * @throws IOException
      */
     @Test
-    public void post() throws IOException{
+    public void post() throws IOException {
         // 创建客户端
-        OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .callTimeout(10, TimeUnit.SECONDS)
-                .readTimeout(10,TimeUnit.SECONDS)
-                .build();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder().callTimeout(10, TimeUnit.SECONDS).readTimeout(10, TimeUnit.SECONDS).build();
         // RequestBody请求体, 这个就好比使用springMVC的@RequestBody注解, 它会将JSON串解析成一个对象
-        RequestBody body = RequestBody.create(MediaType.get("application/json"),"{\"id\":1}");
+        RequestBody body = RequestBody.create(MediaType.get("application/json"), "{\"id\":1}");
         // 创建请求体
         Request request = new Request.Builder()
-                .post(body)
-                .url("http://127.0.0.1:8080/post/123321?id=110&name=123") //而post请求的其它参数, 跟get请求一样, 拼接在url后面即可
-                .addHeader("token", "yes i am a token")
-                .tag("Tag").build();
+                //而post请求的其它参数, 跟get请求一样, 拼接在url后面即可
+                .post(body).url("http://127.0.0.1:8080/post/123321?id=110&name=123")
+                .addHeader("token", "yes i am a token").tag("Tag").build();
         // 发起请求
         Response response = okHttpClient.newCall(request).execute();
         // 处理返回结果
@@ -98,11 +88,11 @@ public class OkClientDemo {
         try {
             StringBuilder sb = new StringBuilder();
             String line = "";
-            while( (line=bufferedReader.readLine()) != null ){
+            while ((line = bufferedReader.readLine()) != null) {
                 sb.append(line);
             }
             System.out.println(sb.toString());
-        }finally {
+        } finally {
             reader.close();
         }
     }
