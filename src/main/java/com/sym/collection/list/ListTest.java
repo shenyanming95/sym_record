@@ -9,7 +9,9 @@ import java.util.function.Consumer;
 /**
  * 一些集合操作的收集
  *
- * Created by shenym on 2019/11/13.
+ *
+ * @author shenym
+ * @date 2019/11/13
  */
 public class ListTest {
 

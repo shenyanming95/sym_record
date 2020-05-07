@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 使用JDK原生的API发起HTTP请求
@@ -19,9 +20,11 @@ import java.net.URLConnection;
  * 这样的好处，是当需要连接到同一服务器地址时，可以复用该 Socket。这时如果要求断开连接，就可以调用 connection.disconnect() 了。
  * <p>
  * <p>
- * Created by 沈燕明 on 2019/5/28 9:25.
+ *
+ * @author ym.shen
+ * @date 2019/5/28 9:25
  */
-public class URLDemo {
+public class URLTest {
 
     /**
      * 发送get请求.
@@ -36,10 +39,14 @@ public class URLDemo {
         URL url = new URL(api);
         URLConnection urlConnection = url.openConnection();
         HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
-        httpURLConnection.setRequestMethod("GET");//设置http请求方式，默认就是GET方式
-        httpURLConnection.setRequestProperty("token", "123456");//设置Http请求头信息
-        httpURLConnection.setConnectTimeout(10000);//设置连接超时时间，单位毫秒
-        httpURLConnection.setReadTimeout(5000);//设置读取超时时间，单位毫秒
+        //设置http请求方式，默认就是GET方式
+        httpURLConnection.setRequestMethod("GET");
+        //设置Http请求头信息
+        httpURLConnection.setRequestProperty("token", "123456");
+        //设置连接超时时间，单位毫秒
+        httpURLConnection.setConnectTimeout(10000);
+        //设置读取超时时间，单位毫秒
+        httpURLConnection.setReadTimeout(5000);
         // 建立socket连接
         httpURLConnection.connect();
         // 真正发起连接
@@ -69,9 +76,12 @@ public class URLDemo {
         URL url = new URL(api);
         URLConnection urlConnection = url.openConnection();
         HttpURLConnection httpURLConnection = (HttpURLConnection) urlConnection;
-        httpURLConnection.setRequestMethod("POST");// 设置http请求方式
-        httpURLConnection.setRequestProperty("token", "123456");//设置Http请求头信息
-        httpURLConnection.setDoOutput(true);//允许输出流写入数据
+        // 设置http请求方式
+        httpURLConnection.setRequestMethod("POST");
+        //设置Http请求头信息
+        httpURLConnection.setRequestProperty("token", "123456");
+        //允许输出流写入数据
+        httpURLConnection.setDoOutput(true);
         // 设置请求参数，可以直接使用输出流写数据，也可以用包装流写入数据
         PrintWriter printWriter = new PrintWriter(httpURLConnection.getOutputStream());
         printWriter.println("\"id\":1111");
@@ -79,7 +89,8 @@ public class URLDemo {
         httpURLConnection.connect();
         // 真正发起连接
         InputStream inputStream;
-        if (httpURLConnection.getResponseCode() == 200) { //请求成功
+        if (httpURLConnection.getResponseCode() == 200) {
+            //请求成功
             inputStream = httpURLConnection.getInputStream();
         } else { //请求失败
             inputStream = httpURLConnection.getErrorStream();
@@ -89,7 +100,7 @@ public class URLDemo {
         StringBuilder sb = new StringBuilder();
         byte[] temp = new byte[1024];
         while (inputStream.read(temp) != -1) {
-            sb.append(new String(temp, "UTF-8"));
+            sb.append(new String(temp, StandardCharsets.UTF_8));
         }
         System.out.println("result=" + sb.toString());
     }

@@ -1,4 +1,4 @@
-package com.sym.encrypt.MD5;
+package com.sym.encrypt.md5;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -7,9 +7,10 @@ import java.security.NoSuchAlgorithmException;
 /**
  * md5加密例子
  *
- * Created by 沈燕明 on 2019/8/1 9:50.
+ * @author ym.shen
+ * @date 2019/8/1 9:50
  */
-public class MD5Util {
+public class Md5Util {
 
     public static String encoder(String psd) {
         try {
@@ -24,7 +25,8 @@ public class MD5Util {
             //4,拼接字符串过程
             StringBuilder stringBuffer = new StringBuilder();
             for (byte b : bs) {
-                int i = b & 0xff;       //==》将一个byte转换为int类型
+                // 将一个byte转换为int类型
+                int i = b & 0xff;
                 //int类型的i需要转换成16进制字符
                 String hexString = Integer.toHexString(i);
                 if (hexString.length() < 2) {

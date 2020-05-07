@@ -125,7 +125,8 @@ public class JdkHttpUtil {
             // 处理请求结果
             int responseCode = conn.getResponseCode();
             logger.info("response code={}", responseCode);
-            if (responseCode == 200) { //请求成功
+            //请求成功
+            if (responseCode == 200) {
                 bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             } else { //请求失败
                 bufferedReader = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
@@ -195,8 +196,7 @@ public class JdkHttpUtil {
     /**
      * 本地测试
      */
-    @Test
-    public void test(){
+    public static void main(String[] args) {
         String result = JdkHttpUtil.doPost("http://127.0.0.1:8080/get/110", null,null);
         System.out.println(result);
     }

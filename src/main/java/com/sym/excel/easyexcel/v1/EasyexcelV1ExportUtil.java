@@ -18,11 +18,16 @@ import java.util.List;
  * 官方文档：https://alibaba-easyexcel.github.io/
  * 注：这个实现旧版本的(1.x版本), 2.x版本API有变化
  *
- * Created by 沈燕明 on 2019/6/25 9:03.
+ *
+ * @author ym.shen
+ * @date 2019/6/25 9:03
  */
 public class EasyexcelV1ExportUtil {
 
-    private final static int MAX_SHEET_COLUMN = 100;//单个sheet假设最大支持100个数据项
+    /**
+     * 单个sheet假设最大支持100个数据项
+     */
+    private final static int MAX_SHEET_COLUMN = 100;
 
     /**
      * 无论数据量多大, 都只会在一个sheet导入, 可能造成OOM异常
@@ -94,7 +99,7 @@ public class EasyexcelV1ExportUtil {
      * @param stream 输入流
      */
     public static void importExcel(InputStream stream){
-        ExcelReader excelReader = new ExcelReader(stream,ExcelTypeEnum.XLSX,new AnalysisEventListener(){
+        ExcelReader excelReader = new ExcelReader(stream,ExcelTypeEnum.XLSX,new AnalysisEventListener<Object>(){
             @Override
             public void invoke(Object data, AnalysisContext context) {
                 System.out.println("每读取一行, 都是封装成："+data);

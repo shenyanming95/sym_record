@@ -1,4 +1,4 @@
-package com.sym.clone.objectClone;
+package com.sym.clone.object;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,10 +19,13 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 public class Person implements Cloneable, Serializable {
-	private static final long serialVersionUID = 1L; // 最好是显式声明serialVersionUID
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String name;
-	private Student student;// Person对其他类的引用
+	/**
+	 * Person对其他类的引用
+	 */
+	private Student student;
 
 	/**
 	 * 浅克隆方式
@@ -40,7 +43,6 @@ public class Person implements Cloneable, Serializable {
 
 	/**
 	 * 深克隆实现方式之一,继续使用clone()方法
-	 * @return
 	 */
 	public Person deepClone() {
 		Person p = null;
@@ -57,7 +59,6 @@ public class Person implements Cloneable, Serializable {
 
 	/**
 	 * 深克隆实现方式之二,使用Java的序列化
-	 * @return
 	 */
 	public Person serializableClone() {
 		try {
