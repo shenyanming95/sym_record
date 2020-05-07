@@ -1,10 +1,7 @@
 package com.sym.property.useApache;
 
-import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
-import org.junit.Test;
 
-import java.util.Iterator;
 import java.util.Scanner;
 
 /**
