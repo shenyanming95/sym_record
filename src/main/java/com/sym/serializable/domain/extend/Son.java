@@ -1,7 +1,6 @@
 package com.sym.serializable.domain.extend;
 
 import lombok.Data;
-import lombok.ToString;
 
 import java.io.Serializable;
 

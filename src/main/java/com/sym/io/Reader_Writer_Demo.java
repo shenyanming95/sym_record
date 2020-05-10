@@ -2,7 +2,11 @@ package com.sym.io;
 
 import org.junit.Test;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.stream.Stream;
 
 /**
