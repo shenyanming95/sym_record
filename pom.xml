@@ -169,6 +169,13 @@
             <version>3.9.0</version>
         </dependency>
 
+        <!-- java操作Git -->
+        <dependency>
+            <groupId>org.eclipse.jgit</groupId>
+            <artifactId>org.eclipse.jgit</artifactId>
+            <version>4.8.0.201706111038-r</version>
+        </dependency>
+
         <!-- lombok插件 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
