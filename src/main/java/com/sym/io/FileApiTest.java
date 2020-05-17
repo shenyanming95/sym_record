@@ -1,5 +1,6 @@
 package com.sym.io;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
 import java.io.File;
@@ -7,18 +8,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 /**
+ * {@link File}Api使用方式
  *
- *
- * Created by 沈燕明 on 2019/5/9 10:59.
+ * @author shenyanming
+ * @date 2019/5/9 10:59
  */
-public class FileDemo {
+@Slf4j
+public class FileApiTest {
 
     /**
      * File对象的判断与创建
-     * @throws IOException
      */
     @Test
-    public void FileDirTest() throws IOException {
+    public void fileDirTest() throws IOException {
         // File可以创建一个文件，也可以创建一个文件夹
         File imgFile = new File("E:/test/1.jpg");
         File dirFile = new File("E:/test/dir");
@@ -28,16 +30,17 @@ public class FileDemo {
         System.out.println("dir目录是否存在："+dirFile.exists());
 
         // 如果文件不存在，创建它
-        imgFile.createNewFile();// 创建文件
-        dirFile.mkdir();//创建目录
+        boolean b = imgFile.createNewFile();
+        //创建目录
+        b = dirFile.mkdir();
 
         // 判断File的类型
         System.out.println("isFile()方法判断一个File对象是否为文件："+imgFile.isFile());
         System.out.println("isDirectory()方法判断一个File对象是否为目录(即文件夹)"+dirFile.isDirectory());
 
         // 通过delete()方法可以删除一个文件（立即删除）
-        imgFile.delete();
-        dirFile.delete();
+        b = imgFile.delete();
+        b = dirFile.delete();
     }
 
     /**
@@ -48,14 +51,14 @@ public class FileDemo {
      * 只会删除最里层的目录。
      */
     @Test
-    public void mkdirsTest(){
+    public void mkdirTest(){
         String path = "E:/test/dir1/dir2/dir3";
         File dirFile = new File(path);
-        System.out.println("因为文件夹还未创建，所以返回："+dirFile.isDirectory());
-        dirFile.mkdirs();
+        log.info("因为文件夹还未创建，所以返回：{}", dirFile.isDirectory());
+        boolean b = dirFile.mkdirs();
         System.out.println("通过mkdirs()可以创建多级目录，此时判断File对象是否为文件夹："+dirFile.isDirectory());
         // 如果File对象表示多级目录，调用delete()方法，只会删除最里层的目录
-        dirFile.delete();
+        b = dirFile.delete();
     }
 
 
@@ -63,7 +66,7 @@ public class FileDemo {
      * 获取一个File对象的父目录
      */
     @Test
-    public void FileParentTest() throws IOException {
+    public void fileParentTest() throws IOException {
         String path = "E:/test/2.txt";
         File file = new File(path);
         file.createNewFile();//创建新文件
@@ -128,16 +131,18 @@ public class FileDemo {
         // 验证是否存在
         System.out.println("文件f1是否存在？"+f1.exists());
         System.out.println("文件f2是否存在？"+f2.exists());
-        /**
+        /*
          * f1直接调用delete()方法,它会立即被删除
          */
         f1.delete();
-        System.out.println("文件f1是否存在？"+f1.exists());//此时返回false，文件确实被删除了
-        /**
+        //此时返回false，文件确实被删除了
+        log.info("文件f1是否存在？{}", f1.exists());
+        /*
          * f2直接调用deleteOnExit()方法，它只能在JVM退出后才会被删除
          */
         f2.deleteOnExit();
-        System.out.println("文件f1是否存在？"+f2.exists());//此时返回true，文件还存在，只有等程序执行完了，文件才会被删除
+        //此时返回true，文件还存在，只有等程序执行完了，文件才会被删除
+        log.info("文件f2是否存在？{}", f2.exists());
 
         Thread.sleep(5000);
     }
