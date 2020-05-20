@@ -3,6 +3,7 @@
 - captcha：java验证码工具
 - clone：对象克隆
 - collection：集合处理
+- dozer：Bean拷贝&映射
 - encrypt：加解密
 - excel：poi和easyExcel解析excel文档
 - http：Http客户端
@@ -13,7 +14,6 @@
 - mail：邮件
 - property：.property和.xml的解析
 - regular：正则表达式
-- serializable：序列化
 - spi：java的spi机制
 - system：操作系统相关
 - time：时间工具
