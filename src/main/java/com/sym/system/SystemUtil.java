@@ -2,6 +2,9 @@ package com.sym.system;
 
 import org.junit.Test;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.ThreadInfo;
+import java.lang.management.ThreadMXBean;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
@@ -67,5 +70,16 @@ public class SystemUtil {
         System.out.println(runtime.maxMemory() / MB + "M");
 
         runtime.gc();
+    }
+
+    @Test
+    public void getThreadInfoTest(){
+        ThreadMXBean threadBean = ManagementFactory.getThreadMXBean();
+        //不需要获取同步的 monitor 和 Synchronizer 信息，仅获取线程和线程堆栈信息
+        ThreadInfo[] threadInfo = threadBean.dumpAllThreads(false, false);
+        //遍历线程信息，仅打印线程id和线程名称信息
+        for(ThreadInfo info : threadInfo){
+            System.out.println(info);
+        }
     }
 }
