@@ -1,10 +1,15 @@
 package com.sym.scanner;
 
+import cn.hutool.core.io.FileUtil;
 import lombok.extern.slf4j.Slf4j;
+import sun.net.www.protocol.file.FileURLConnection;
+
 import java.io.File;
 import java.io.IOException;
 import java.net.JarURLConnection;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -27,6 +32,16 @@ public abstract class AbstractScanner implements IScanner {
     private final static String CLASS_FILE_SUFFIX = ".class";
     private final static String JAR_PROTOCOL_NAME = "jar";
     private final static String FILE_PROTOCOL_NAME = "file";
+    private final static String FILE_DELIMITER;
+
+    static {
+        String osName = System.getProperty("os.name").toLowerCase();
+        if(osName.contains("windows")){
+            FILE_DELIMITER = "\\";
+        }else{
+            FILE_DELIMITER = "/";
+        }
+    }
 
     protected AbstractScanner() {
         this(null);
@@ -85,7 +100,7 @@ public abstract class AbstractScanner implements IScanner {
                 String protocol = url.getProtocol();
                 if (FILE_PROTOCOL_NAME.equals(protocol)) {
                     // 说明是文件夹
-                    File parentFile = new File(url.getPath());
+                    File parentFile = new File(url.toURI());
                     this.getClassNameFromFolder(parentFile, retList, basePackagePath);
                 } else if (JAR_PROTOCOL_NAME.equals(protocol)) {
                     // 说明是jar
@@ -96,7 +111,7 @@ public abstract class AbstractScanner implements IScanner {
                     log.warn("不支持的协议类型: {}", protocol);
                 }
             }
-        } catch (IOException e) {
+        } catch (IOException | URISyntaxException e) {
             log.error("解析包路径失败, ", e);
         }
         return retList;
@@ -218,9 +233,9 @@ public abstract class AbstractScanner implements IScanner {
      */
     private String formatPath(String path, boolean toFilePattern) {
         if (toFilePattern) {
-            path = path.replace(".", "/");
+            path = path.replace(".", FILE_DELIMITER);
         } else {
-            path = path.replace("/", ".");
+            path = path.replace(FILE_DELIMITER, ".");
         }
         return path;
     }
