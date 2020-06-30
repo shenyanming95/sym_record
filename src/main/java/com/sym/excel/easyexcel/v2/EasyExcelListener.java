@@ -9,7 +9,7 @@ import com.alibaba.excel.read.metadata.holder.ReadSheetHolder;
  * @author shenym
  * @date 2019/10/31
  */
-public class EasyExcelListener extends AnalysisEventListener {
+public class EasyExcelListener<T> extends AnalysisEventListener<T> {
 
     /**
      * 这里的变量是可以被使用到的
@@ -20,7 +20,7 @@ public class EasyExcelListener extends AnalysisEventListener {
      * 如果没指定泛型, 默认都是Map
      */
     @Override
-    public void invoke(Object data, AnalysisContext context) {
+    public void invoke(T data, AnalysisContext context) {
         //sheet相关内容
         ReadSheetHolder readSheetHolder = context.readSheetHolder();
         //单行相关内容

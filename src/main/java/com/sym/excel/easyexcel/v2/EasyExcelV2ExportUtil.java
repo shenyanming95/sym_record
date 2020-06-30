@@ -59,7 +59,7 @@ public class EasyExcelV2ExportUtil {
      * @param readListener 监听器, 一般用来对大容量的Excel做批次处理, 避免一次性加载太多数据导致内存GG
      * @param headClass    设置标题行
      */
-    public static void importExcel(InputStream inputStream, ReadListener readListener, Class headClass) {
+    public static void importExcel(InputStream inputStream, ReadListener<?> readListener, Class<?> headClass) {
         EasyExcel.read(inputStream, readListener)
                 //读取哪一个sheet
                 .sheet(0)
