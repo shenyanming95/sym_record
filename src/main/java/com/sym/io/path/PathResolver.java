@@ -2,8 +2,11 @@ package com.sym.io.path;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Enumeration;
@@ -11,11 +14,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * 解析类路径下的文件
- * <p>
- * https://www.jianshu.com/p/dea6937d65b9
- * <p>
- * Created by shenym on 2019/12/20.
+ * 解析类路径下的文件：https://www.jianshu.com/p/dea6937d65b9
+ *
+ * @author shenym
+ * @date 2019/12/20
  */
 public class PathResolver {
 
@@ -33,10 +35,10 @@ public class PathResolver {
      * 解析类路径下的所有class文件
      *
      * @param packageName 包路径
-     * @return
+     * @return set
      */
-    public Set<Class> parsePackageName(String packageName) {
-        Set<Class> resultSet = new HashSet<>();
+    public Set<Class<?>> parsePackageName(String packageName) {
+        Set<Class<?>> resultSet = new HashSet<>();
         try {
             Enumeration<URL> urlEnumeration = classLoader.getResources(packageName.replace(".", "/"));
             while (urlEnumeration.hasMoreElements()) {
@@ -54,6 +56,37 @@ public class PathResolver {
         return resultSet;
     }
 
+    /**
+     * 获取一个文件的真实物理地址
+     * @param classPath 类路径
+     * @return 真实路径
+     */
+    public String getRealPath(String classPath){
+        URL url = classLoader.getResource(classPath);
+        if( url == null ){
+            System.out.println(classPath+"，不存在");
+            return "";
+        }
+        try {
+            return URLDecoder.decode(url.getFile(), StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
+    /**
+     * 获取类路径下的文件的File对象
+     * @param classPath 类路径
+     * @return 文件句柄
+     */
+    public File getFile(String classPath){
+        String path = getRealPath(classPath);
+        if( "".equals(path) ){
+            return new File(path);
+        }
+        return null;
+    }
 
     /**
      * 递归处理一个文件File
@@ -61,7 +94,7 @@ public class PathResolver {
      * @param file     文件对象
      * @param classSet class集合
      */
-    private void resolveDirectory(File file, String packageName, final Set<Class> classSet) {
+    private void resolveDirectory(File file, String packageName, final Set<Class<?>> classSet) {
         if (file.isDirectory()) {
             // 存在子文件夹, 递归处理
             File[] files = file.listFiles();
