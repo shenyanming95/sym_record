@@ -17,7 +17,7 @@ public class ScannerTest {
     @Test
     public void test01(){
         IScanner scanner = new DefaultClassScanner();
-        List<Class<?>> classList = scanner.doScan("com.sym.http");
+        List<Class<?>> classList = scanner.doScan("com.sym");
         classList.forEach(System.out::println);
     }
 
