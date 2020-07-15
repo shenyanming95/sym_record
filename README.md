@@ -13,7 +13,6 @@
 - jwt：jwt使用
 - mail：邮件
 - property：.property和.xml的解析
-- regular：正则表达式
 - spi：java的spi机制
 - system：操作系统相关
 - time：时间工具

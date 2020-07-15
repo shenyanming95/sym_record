@@ -1,12 +1,25 @@
 package com.sym.io;
 
-import com.sym.io.path.PathResolver;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.PrintStream;
+import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URL;
+import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 
 /**
@@ -16,9 +29,7 @@ import java.nio.charset.StandardCharsets;
  * @author shenyanming
  * @Date: 2019-03-07 16:10
  */
-public class StreamTest implements Serializable {
-
-    private PathResolver pathResolver = new PathResolver();
+public class ByteStreamTest {
 
     /**
      * 当 InputStream 关闭的时候，就不能再继续操作 InputStream
@@ -77,13 +88,13 @@ public class StreamTest implements Serializable {
     @Test
     public void fileInputStreamTest() throws IOException {
         // 先获取文件真实路径
-        String realPath = pathResolver.getRealPath("pic/lol.txt");
+        String realPath = getRealPath("pic/lol.txt");
         System.out.println("文件磁盘地址：" + realPath);
         // 通过File对象获取一个文件输入流
         FileInputStream fis = new FileInputStream(new File(realPath));
         System.out.println("文件大小" + fis.available());
         // 读取FileInputStream的内容
-        //创建一个临时的字节数组缓冲区用来接收字节流的数据
+        // 创建一个临时的字节数组缓冲区用来接收字节流的数据
         byte[] temp = new byte[10];
         int i = 0;
         StringBuilder s = new StringBuilder();
@@ -103,7 +114,7 @@ public class StreamTest implements Serializable {
     @Test
     public void fileOutputStreamTest() throws IOException {
         // 先获取文件路径
-        String realPath = pathResolver.getRealPath("pic/lol.txt");
+        String realPath = getRealPath("pic/lol.txt");
         System.out.println("文件磁盘地址：" + realPath);
         // 通过File对象获取一个文件输入流
         FileInputStream fis = new FileInputStream(new File(realPath));
@@ -229,6 +240,19 @@ public class StreamTest implements Serializable {
 
     }
 
+    private String getRealPath(String classPath){
+        URL url = ClassLoader.getSystemClassLoader().getResource(classPath);
+        if( url == null ){
+            System.out.println(classPath+"，不存在");
+            return "";
+        }
+        try {
+            return URLDecoder.decode(url.getFile(), StandardCharsets.UTF_8.name());
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
 
     /**
      * 内部对象
@@ -241,6 +265,5 @@ public class StreamTest implements Serializable {
         private String name;
         private double height;
     }
-
 
 }

@@ -1,4 +1,4 @@
-package com.sym.json.jackJson;
+package com.sym.json.jackjson;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JavaType;

@@ -1,4 +1,4 @@
-package com.sym.json.fastJson;
+package com.sym.json.fastjson;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
