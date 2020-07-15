@@ -190,7 +190,7 @@ public class BatchGits{
                 urls.add(url);
             }
         }catch (Exception e){
-            log.error("读取失败失败, 原因: {}", e);
+            log.error("读取失败失败,", e);
         }
         if(urls.isEmpty()){
             log.warn("未加载到git仓库地址");
