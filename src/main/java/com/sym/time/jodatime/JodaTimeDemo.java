@@ -1,4 +1,4 @@
-package com.sym.time.jodaTime;
+package com.sym.time.jodatime;
 
 import com.sym.time.TimePatternConstant;
 import org.joda.time.DateTime;
