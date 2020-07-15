@@ -2,8 +2,9 @@ package com.sym.util;
 
 /**
  * 程序运行时间监控类
- * <p>
- * Created by 沈燕明 on 2019/6/25 9:30.
+ *
+ * @author shenyanming
+ * @date 2019/6/25 9:30
  */
 public class TimeWatch {
     private static ThreadLocal<Long> threadLocal = new ThreadLocal<>();
@@ -37,9 +38,13 @@ public class TimeWatch {
     public static long end(boolean print) {
         long endPoint = System.currentTimeMillis();
         Long startPoint;
-        if ((startPoint = threadLocal.get()) == null) throw new IllegalArgumentException("未设置一个监控起始时间点");
+        if ((startPoint = threadLocal.get()) == null) {
+            throw new IllegalArgumentException("未设置一个监控起始时间点");
+        }
         long result = endPoint - startPoint;
-        if (print) System.out.println("耗时：" + result);
+        if (print) {
+            System.out.println("耗时：" + result);
+        }
         threadLocal.remove();
         return result;
     }
