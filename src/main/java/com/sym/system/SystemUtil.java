@@ -13,8 +13,9 @@ import java.util.List;
 
 /**
  * java与操作系统之间的交互
- * <p>
- * Created by shenym on 2019/10/14.
+ *
+ * @author shenyanming
+ * @date 2019/10/14
  */
 public class SystemUtil {
 
