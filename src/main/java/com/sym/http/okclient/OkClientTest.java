@@ -1,4 +1,4 @@
-package com.sym.http.okClient;
+package com.sym.http.okclient;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
