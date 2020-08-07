@@ -1,7 +1,9 @@
 package com.sym;
 
+import com.sym.util.JsonResult;
 import org.junit.Test;
 
+import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
 import java.util.Arrays;
 
@@ -13,7 +15,7 @@ public class YourTest {
     @Test
     public void testOne() {
         StringBuilder sb = new StringBuilder("123");
-        String s = sb.replace(sb.length() - 1, sb.length()-1, "4").toString();
+        String s = sb.replace(sb.length() - 1, sb.length() - 1, "4").toString();
         System.out.println(s);
     }
 
@@ -39,9 +41,11 @@ public class YourTest {
 
     @Test
     public void testFive() {
+        PropertyChangeSupport support = new PropertyChangeSupport(JsonResult.class);
+        support.addPropertyChangeListener(System.out::println);
 
+        support.firePropertyChange("success12", false, true);
+        support.fireIndexedPropertyChange("success", 1, 12, 456);
     }
-    
-
 
 }

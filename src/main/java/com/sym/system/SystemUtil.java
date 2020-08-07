@@ -83,4 +83,11 @@ public class SystemUtil {
             System.out.println(info);
         }
     }
+
+    @Test
+    public void getUserDir(){
+        // 获取当前工程的目录
+        String dir = System.getProperty("user.dir");
+        System.out.println(dir);
+    }
 }

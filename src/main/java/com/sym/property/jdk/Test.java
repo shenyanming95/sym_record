@@ -1,4 +1,4 @@
-package com.sym.property.useJDK;
+package com.sym.property.jdk;
 
 public class Test {
 
