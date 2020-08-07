@@ -1,4 +1,4 @@
-package com.sym.property.useApache;
+package com.sym.property.apache;
 
 import org.apache.commons.configuration.XMLConfiguration;
 

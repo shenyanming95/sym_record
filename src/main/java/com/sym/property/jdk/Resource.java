@@ -1,4 +1,4 @@
-package com.sym.property.useJDK;
+package com.sym.property.jdk;
 
 import java.io.IOException;
 import java.util.Properties;
