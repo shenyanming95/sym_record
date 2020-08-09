@@ -169,7 +169,10 @@ public class BatchGits{
             }
         });
         if(!failureInfoList.isEmpty()){
-            log.error("操作失败的git仓库信息：{}", failureInfoList);
+            log.error("操作失败的git仓库数量：{}", failureInfoList.size());
+            failureInfoList.forEach(info -> {
+                log.error("操作失败原因：{}", info);
+            });
         }
     }
 

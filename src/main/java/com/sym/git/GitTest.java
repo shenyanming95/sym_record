@@ -20,9 +20,7 @@ public class GitTest {
     @Test
     public void test01() throws GitAPIException {
         // 初始化一个git仓库
-        Git git = Git.init()
-                .setDirectory(new File(""))
-                .call();
+        Git git = Git.init().setDirectory(new File("")).call();
         // 剩下的全是git命令相应的操作命令
     }
 
@@ -30,15 +28,31 @@ public class GitTest {
      * 批量git操作
      */
     @Test
-    public void test02(){
-        BatchGits.pull("/Users/test");
+    public void test02() {
+        BatchGits.pull("");
     }
 
     /**
      * 批量git操作
      */
     @Test
-    public void test03(){
+    public void test03() {
         BatchGits.clone("/property/git_remote_urls.txt", "/Users/test");
+    }
+
+    /**
+     * 批量git操作
+     */
+    @Test
+    public void test04() {
+        BatchGits.commit("", "commit_message");
+    }
+
+    /**
+     * 批量git操作
+     */
+    @Test
+    public void test05() {
+        BatchGits.push("");
     }
 }
