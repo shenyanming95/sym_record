@@ -1,5 +1,4 @@
 # **星星之火可以燎原**
-- annotation：java自定义注解, 解析
 - captcha：java验证码工具
 - clone：对象克隆
 - collection：集合处理
