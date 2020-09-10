@@ -1,8 +1,5 @@
 package com.sym.scanner;
 
-import com.sym.annotation.EnableAnnotation;
-import com.sym.scanner.impl.AnnotationClassScanner;
-import com.sym.scanner.impl.AnnotationMethodScanner;
 import com.sym.scanner.impl.DefaultClassScanner;
 import org.junit.Test;
 
@@ -21,17 +18,4 @@ public class ScannerTest {
         classList.forEach(System.out::println);
     }
 
-    @Test
-    public void test02(){
-        IScanner scanner = new AnnotationClassScanner(EnableAnnotation.class);
-        List<Class<?>> classList = scanner.doScan("com.sym.annotation");
-        classList.forEach(System.out::println);
-    }
-
-    @Test
-    public void test03(){
-        IScanner scanner = new AnnotationMethodScanner(EnableAnnotation.class);
-        List<Class<?>> classList = scanner.doScan("com.sym.annotation");
-        classList.forEach(System.out::println);
-    }
 }
