@@ -15,6 +15,7 @@
 - jwt：jwt使用
 - mail：邮件
 - property：.property和.xml的解析
+- quartz：定时任务
 - retry：重试工具
 - scanner：扫描工具
 - spi：java的spi机制

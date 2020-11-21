@@ -4,8 +4,12 @@ import com.sym.util.JsonResult;
 import org.junit.Test;
 
 import java.beans.PropertyChangeSupport;
+import java.io.File;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Created by 沈燕明 on 2018/12/8.
@@ -48,4 +52,57 @@ public class YourTest {
         support.fireIndexedPropertyChange("success", 1, 12, 456);
     }
 
+    @Test
+    public void test0001(){
+        String path = "F:\\视频缓冲区\\汪文君 - Java多线程编程实战\\第三阶段\\";
+        File[] files = new File(path).listFiles(f -> !f.isDirectory() && !f.getName().endsWith(".zip"));
+        List<File> list = Arrays.asList(files);
+//        Comparator<File> comparator = Comparator.comparing(o -> substring(o.getName()));
+//        Comparator<File> comparing = comparator.thenComparing(o -> substring2(o.getName()));
+        AtomicInteger index = new AtomicInteger(1);
+//        list.sort(comparing);
+        list.forEach(f -> {
+            String name = f.getName();
+            int i = name.indexOf(" ");
+            name = name.substring(i + 1);
+            String newName = intToString(index.getAndIncrement()) + "丨" + name;
+            newName = newName.replace("_", "");
+            System.out.println(f.renameTo(new File(path + newName.trim())));
+        });
+    }
+
+    private String intToString(int i){
+        if(i < 10){
+            return "0" + i;
+        }
+        return String.valueOf(i);
+    }
+
+    private Integer substring(String name){
+        int i = name.indexOf("-");
+        return Integer.valueOf(name.substring(0, i));
+    }
+
+    private Integer substring2(String name){
+        int i1 = name.indexOf("-");
+        int i2 = name.indexOf(" ");
+        return Integer.valueOf(name.substring(i1 + 1, i2));
+    }
+
+    @Test
+    public void test0002(){
+        String path = "F:\\视频缓冲区\\汪文君 - Java多线程编程实战\\第一阶段\\";
+        File dir = new File(path);
+        File[] listFiles = dir.listFiles(f -> !f.getName().endsWith(".rar"));
+        AtomicInteger index = new AtomicInteger(1);
+        for (File file : listFiles) {
+            String name = file.getName();
+            int i = name.lastIndexOf("丨");
+            name = name.substring(i + 1).trim();
+            name = intToString(index.getAndIncrement()) + "丨" + name;
+            name = name.replace("_[itjc8.com]", "");
+
+            //file.renameTo(new File(path + name));
+        }
+    }
 }
