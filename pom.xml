@@ -25,6 +25,13 @@
             <version>1.10</version>
         </dependency>
 
+        <!-- guava核心依赖 -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>28.2-jre</version>
+        </dependency>
+
         <!-- javaBean的拷贝 -->
         <dependency>
             <groupId>net.sf.dozer</groupId>
