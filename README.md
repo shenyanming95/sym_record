@@ -15,9 +15,12 @@
 - jwt：jwt使用
 - mail：邮件
 - property：.property和.xml的解析
+- proxy: 动态代理
 - quartz：定时任务
+- reflection：反射
 - retry：重试工具
 - scanner：扫描工具
+- serialization：序列化工具集合
 - spi：java的spi机制
 - system：操作系统相关
 - time：时间工具
