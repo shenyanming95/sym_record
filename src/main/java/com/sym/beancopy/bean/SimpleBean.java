@@ -1,7 +1,8 @@
-package com.sym.dozer.bean;
+package com.sym.beancopy.bean;
 
 import lombok.Data;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 
 import java.util.List;
 import java.util.Map;
@@ -12,8 +13,9 @@ import java.util.Map;
  */
 @ToString
 @Data
-public class SimpleBeanDTO {
-    private Integer id;
+@Accessors(chain = true)
+public class SimpleBean {
+    private int id;
     private String name;
     private List<Integer> intList;
     private Map<String, Object> map;
