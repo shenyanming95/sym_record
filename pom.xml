@@ -123,7 +123,7 @@
         <dependency>
             <groupId>com.thoughtworks.xstream</groupId>
             <artifactId>xstream</artifactId>
-            <version>1.4.9</version>
+            <version>1.4.17</version>
         </dependency>
 
         <!-- Bean复制工具, 需要引入java8支持 -->
