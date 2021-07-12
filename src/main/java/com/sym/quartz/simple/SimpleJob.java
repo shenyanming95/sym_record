@@ -15,8 +15,8 @@ import java.util.Date;
  * {@link Job}接口只有一个execute方法, 方法中有个参数 JobExecutionContext 是Job在执行时的全局环境,
  * 可以在这边取到 调度容器、触发器、执行任务、执行参数... 等等
  */
-@DisallowConcurrentExecution
 @Data
+@DisallowConcurrentExecution
 public class SimpleJob implements Job {
 
     /*

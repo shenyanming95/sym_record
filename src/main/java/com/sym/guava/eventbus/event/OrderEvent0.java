@@ -1,6 +1,7 @@
 package com.sym.guava.eventbus.event;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
 /**
@@ -11,6 +12,7 @@ import lombok.ToString;
  */
 @Data
 @ToString
+@EqualsAndHashCode(callSuper = true)
 public class OrderEvent0 extends OrderEvent {
     private static final long serialVersionUID = -703613124641446809L;
 

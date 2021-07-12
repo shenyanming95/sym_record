@@ -1,29 +1,19 @@
 # **星星之火可以燎原**
-- captcha：java验证码工具
-- clone：对象克隆
-- collection：集合处理
-- compare：排序
-- dozer：Bean拷贝&映射
+- beancopy：对象拷贝工具
+- configuration：解析配置文件
 - encrypt：加解密
 - excel：poi和easyExcel解析excel文档
-- git：操作git
+- git：批量git操作工具类
 - guava：谷歌java工具包
 - http：Http客户端
-- io：java的bio
-- java8：lambda和stream
-- json：常用JSON解析工具
-- jwt：jwt使用
-- mail：邮件
-- property：.property和.xml的解析
-- proxy: 动态代理
-- quartz：定时任务
-- reflection：反射
-- retry：重试工具
-- scanner：扫描工具
+- proxy：动态代理
+- quartz: 定时任务
+- quickstart: 简单使用
+- monitor：文件监控
+- scanner：自实现扫描器
 - serialization：序列化工具集合
 - spi：java的spi机制
-- system：操作系统相关
-- time：时间工具
+- type: java类型
 - util: 常用工具记录
 
 

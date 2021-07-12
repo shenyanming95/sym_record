@@ -9,7 +9,6 @@ public interface KeyGenerator {
 
     /**
      * 生成key
-     * @return
      */
     String generate();
 }

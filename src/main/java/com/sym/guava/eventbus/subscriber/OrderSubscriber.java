@@ -17,8 +17,6 @@ public class OrderSubscriber {
 
     /**
      * 加了注解{@link Subscribe}的方法只能有一个参数
-     *
-     * @param orderEvent
      */
     @Subscribe
     public void handler(OrderEvent orderEvent) {

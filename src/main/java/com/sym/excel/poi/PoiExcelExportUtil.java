@@ -50,7 +50,7 @@ public class PoiExcelExportUtil {
         for (Map<String, Object> map : dataList) {
             Row dataRow = sheet.createRow(j++);
             int z = 0;
-            for (Map.Entry entry : map.entrySet()) {
+            for (Map.Entry<String, Object> entry : map.entrySet()) {
                 Cell dataRowCell = dataRow.createCell(z++);
                 dataRowCell.setCellValue(toString(entry.getValue()));
             }
@@ -82,7 +82,8 @@ public class PoiExcelExportUtil {
     /**
      * 设置excel的标题和数据
      */
-    private static void initWorkBook(Workbook workbook, List<String> sheetNameList, List<String> rowTitleList, List<List<String>> dataList) {
+    private static void initWorkBook(Workbook workbook, List<String> sheetNameList,
+                                     List<String> rowTitleList, List<List<String>> dataList) {
         if (sheetNameList == null || sheetNameList.size() == 0) {
             Sheet sheet = workbook.createSheet();
             initSheetTitle(sheet, rowTitleList);
@@ -97,9 +98,9 @@ public class PoiExcelExportUtil {
 
     /**
      * 使用 HSSFWorkbook 导出数据
-     * @throws IOException
      */
-    public static void exportByHSSF(List<String> sheetNameList, List<String> rowTitleList, List<List<String>> dataList, OutputStream out) throws IOException {
+    public static void exportByHSSF(List<String> sheetNameList, List<String> rowTitleList,
+                                    List<List<String>> dataList, OutputStream out) throws IOException {
         HSSFWorkbook workbook = new HSSFWorkbook();
         try {
             initWorkBook(workbook, sheetNameList, rowTitleList, dataList);
@@ -112,9 +113,9 @@ public class PoiExcelExportUtil {
 
     /**
      * 使用 SXSSFWorkbook 导出数据
-     * @throws IOException
      */
-    public static void exportBySXSSF(List<String> sheetNameList, List<String> rowTitleList, List<List<String>> dataList, OutputStream out) throws IOException {
+    public static void exportBySXSSF(List<String> sheetNameList, List<String> rowTitleList,
+                                     List<List<String>> dataList, OutputStream out) throws IOException {
         SXSSFWorkbook workbook = new SXSSFWorkbook(1000);
         try {
             initWorkBook(workbook, sheetNameList, rowTitleList, dataList);
